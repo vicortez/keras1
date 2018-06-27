@@ -25,5 +25,5 @@ y= np_utils.to_categorical(y, 4) # One-hot encode the labels
 print(y)
 print(loaded_model.predict(x))
 # evaluate loaded model on test data
-score = loaded_model.evaluate(x, y, verbose=0)
-print("%s: %.2f%%" % (loaded_model.metrics_names[1], score[1] * 100))
+#score = loaded_model.evaluate(x, y, verbose=0)
+#print("%s: %.2f%%" % (loaded_model.metrics_names[1], score[1] * 100))
