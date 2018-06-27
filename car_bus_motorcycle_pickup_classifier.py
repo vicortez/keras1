@@ -45,13 +45,13 @@ LABELS = ['bus', 'motorcycle', 'pickup_truck', 'streetcar']
 LABELS.index('bus')
 
 batch_size = 32 # in each iteration, we consider 32 training examples at once
-num_epochs = 6 # we iterate 200 times over the entire training set
+num_epochs = 8 # we iterate 200 times over the entire training set
 kernel_size = 3 # we will use 3x3 kernels
 pool_size = 2 # we will use 2x2 pooling
-conv_depth_1 = 16 # we will initially have 32 kernels per conv. layer.
-conv_depth_2 = 32 # ...switching to 64 after the first pooling layer
-drop_prob_1 = 0.5 # dropout after pooling with probability 0.25
-drop_prob_2 = 0.45 # dropout in the FC layer with probability 0.5
+conv_depth_1 = 20 # we will initially have 32 kernels per conv. layer.
+conv_depth_2 = 50 # ...switching to 64 after the first pooling layer
+drop_prob_1 = 0.25 # dropout after pooling with probability 0.25
+drop_prob_2 = 0.5 # dropout in the FC layer with probability 0.5
 hidden_size = 512 # the FC layer will have 512 neurons
 
 (x_train, y_train), (x_test, y_test) = cifar100.load_data() # fetch CIFAR-10 data
@@ -97,6 +97,41 @@ for pos,i in enumerate(y_test):
         filtered_x_test.append(x_test[pos])
         filtered_y_test.append(3)
 
+del filtered_x_test[22]
+del filtered_x_test[31]
+del filtered_x_test[57]
+del filtered_x_test[104]
+del filtered_x_test[342]
+del filtered_x_test[343]
+del filtered_x_test[348]
+del filtered_y_test[22]
+del filtered_y_test[31]
+del filtered_y_test[57]
+del filtered_y_test[104]
+del filtered_y_test[342]
+del filtered_y_test[343]
+del filtered_y_test[348]
+
+
+del filtered_x_train[6]
+del filtered_x_train[17]
+del filtered_x_train[41]
+del filtered_x_train[98]
+del filtered_x_train[133]
+del filtered_x_train[137]
+del filtered_x_train[161]
+del filtered_x_train[192]
+del filtered_x_train[207]
+del filtered_y_train[6]
+del filtered_y_train[17]
+del filtered_y_train[41]
+del filtered_y_train[98]
+del filtered_y_train[133]
+del filtered_y_train[137]
+del filtered_y_train[161]
+del filtered_y_train[192]
+del filtered_y_train[207]
+
 filtered_x_train=np.array(filtered_x_train)
 filtered_y_train=np.array(filtered_y_train)
 filtered_x_test=np.array(filtered_x_test)
@@ -112,6 +147,12 @@ filtered_x_test /= np.max(filtered_x_test) # Normalise data to [0, 1] range
 
 filtered_Y_train = np_utils.to_categorical(filtered_y_train, num_classes) # One-hot encode the labels
 filtered_Y_test = np_utils.to_categorical(filtered_y_test, num_classes) # One-hot encode the labels
+
+
+
+
+
+
 
 inp = Input(shape=(height, width, depth)) # depth goes last in TensorFlow back-end (first in Theano)
 # Conv [32] -> Conv [32] -> Pool (with dropout on the pooling layer)
