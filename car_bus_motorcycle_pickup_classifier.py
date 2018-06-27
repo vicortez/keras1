@@ -44,7 +44,7 @@ CIFAR100_LABELS_LIST = [
 LABELS = ['bus', 'motorcycle', 'pickup_truck', 'streetcar']
 LABELS.index('bus')
 
-batch_size = 16 # in each iteration, we consider 32 training examples at once
+batch_size = 32 # in each iteration, we consider 32 training examples at once
 num_epochs = 6 # we iterate 200 times over the entire training set
 kernel_size = 3 # we will use 3x3 kernels
 pool_size = 2 # we will use 2x2 pooling
